@@ -14,7 +14,7 @@ esac
 docker_inram=false
 docker_inram_algo=tmpfs
 docker_inram_size={{ DOCKER_RAMFS_SIZE }}
-logs_inram=false
+logs_inram=true
 secureboot=false
 bootloader=generic
 in_kdump=false
@@ -35,8 +35,8 @@ for x in $(cat /proc/cmdline); do
         docker_inram_size=*)
             docker_inram_size="${x#docker_inram_size=}"
             ;;
-        logs_inram=on)
-            logs_inram=true
+        logs_inram=off)
+            logs_inram=false
             ;;
         varlog_size=*)
             varlog_size="${x#varlog_size=}"
