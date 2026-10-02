@@ -1,0 +1,18 @@
+SPATH := $($(KDUMP_RUNTIME_MODULE)_SRC_PATH)
+DEP_FILES := $(SONIC_COMMON_FILES_LIST) \
+             rules/sonic-kernel-modules.mk \
+             rules/sonic-kernel-modules.dep \
+             scripts/signing_kernel_modules.sh \
+             $(SPATH)/Makefile \
+             $(SPATH)/README.md \
+             $(SPATH)/kdump-runtime/Kbuild \
+             $(SPATH)/kdump-runtime/kdump_runtime.c
+DEP_FILES += $(SONIC_COMMON_BASE_FILES_LIST)
+
+$(KDUMP_RUNTIME_MODULE)_CACHE_MODE := GIT_CONTENT_SHA
+$(KDUMP_RUNTIME_MODULE)_DEP_FLAGS := $(SONIC_COMMON_FLAGS_LIST) $(KVERSION)
+$(KDUMP_RUNTIME_MODULE)_DEP_FILES := $(DEP_FILES)
+
+$(KDUMP_RUNTIME_SIGNED_MODULE)_CACHE_MODE := none
+$(KDUMP_RUNTIME_SIGNED_MODULE)_DEP_FLAGS := $(SONIC_COMMON_FLAGS_LIST) $(KVERSION)
+$(KDUMP_RUNTIME_SIGNED_MODULE)_DEP_FILES := $(DEP_FILES)
